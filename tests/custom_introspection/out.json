@@ -1,0 +1,124 @@
+{
+  "enums": {
+    "EXPR": [
+      "__FIRST",
+      "UNDEFINED",
+      "AND",
+      "CMP",
+      "PLUS",
+      "MINUS",
+      "TIMES",
+      "ARR_LOOK",
+      "ARR_LEN",
+      "MSG_SEND",
+      "NOT",
+      "ID",
+      "INT_LIT",
+      "BOOL_LIT",
+      "THIS",
+      "ARR_ALLOC",
+      "ALLOC",
+      "__LAST"
+    ],
+    "LLVALUE": [
+      "UNDEFINED",
+      "CONST",
+      "REG"
+    ],
+    "LOCAL_KIND": [
+      "UNDEFINED",
+      "PARAM",
+      "FIELD",
+      "VAR"
+    ],
+    "MEM": [
+      "STR_INTERN",
+      "PARSE_TEMP",
+      "PARSE_PERSIST_TYPECHECK_PASS2",
+      "TYPECHECK",
+      "FUNC",
+      "VTABLE",
+      "CHILDREN",
+      "__LEN"
+    ],
+    "STMT": [
+      "UNDEFINED",
+      "BLOCK",
+      "ASGN",
+      "ARR_ASGN",
+      "IF",
+      "WHILE",
+      "PRINT"
+    ],
+    "TOK": [
+      "UNDEFINED",
+      "EOI",
+      "INTLIT",
+      "LPAR",
+      "NOT",
+      "BOOLEAN",
+      "INT",
+      "__FIRST_STMT",
+      "LBRACE",
+      "ID",
+      "IF",
+      "WHILE",
+      "PRINT",
+      "__LAST_STMT",
+      "PUBLIC",
+      "ELSE",
+      "RETURN",
+      "STATIC",
+      "VOID",
+      "STRING",
+      "TRUE",
+      "FALSE",
+      "THIS",
+      "NEW",
+      "CLASS",
+      "EXTENDS",
+      "ASGN",
+      "RPAR",
+      "RBRACE",
+      "RBRACKET",
+      "COMMA",
+      "DOT",
+      "SEMI",
+      "__FIRST_OP",
+      "AND_AND",
+      "LT",
+      "PLUS",
+      "MINUS",
+      "STAR",
+      "LBRACKET",
+      "__LAST_OP",
+      "__LAST"
+    ],
+    "TY": [
+      "UNDEFINED",
+      "INT",
+      "ARR",
+      "BOOL",
+      "ID"
+    ],
+    "TYSPEC": [
+      "UNDEFINED",
+      "ARR",
+      "INT",
+      "BOOL",
+      "ID"
+    ],
+    "float_denorm_style": [
+      "denorm_indeterminate",
+      "denorm_absent",
+      "denorm_present"
+    ],
+    "float_round_style": [
+      "round_indeterminate",
+      "round_toward_zero",
+      "round_to_nearest",
+      "round_toward_infinity",
+      "round_toward_neg_infinity"
+    ]
+  }
+}
