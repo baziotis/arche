@@ -1,5 +1,9 @@
 # Arche: Meta-programming Layer for C++
 
+## Status
+
+THIS IS NOT READY FOR USE!
+
 ## What
 
 Arche extracts a bunch of information about your C++ program and dumps into a
