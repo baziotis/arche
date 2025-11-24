@@ -24,6 +24,7 @@ struct Struct {
 };
 
 struct Info {
+  llvm::StringRef filename;
   llvm::DenseMap<llvm::StringRef, arche::Enum> enums;
   llvm::DenseMap<llvm::StringRef, arche::Struct> structs;
 };

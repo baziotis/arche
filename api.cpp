@@ -3,9 +3,21 @@
 
 namespace arche {
 
-Info read_info(std::string &code) {
+Info read_info(std::string &code, std::string &filename) {
   Info info;
-  int succ = clang::tooling::runToolOnCode(std::make_unique<ReaderAction>(info), code);
+  info.filename = filename;
+
+  std::vector<std::string> args = {
+    "-resource-dir", "/Users/baziotis/Documents/llvm/llvm-21-build/lib/clang/21",
+    // Force C++ mode. Otherwise, Clang treats .h files as C files.
+    "-x", "c++",
+    // TODO: The following should be set by the user
+    "-std=c++17",
+    "-isysroot", "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+  };
+
+  int succ = clang::tooling::runToolOnCodeWithArgs(
+      std::make_unique<ReaderAction>(info), code, args, filename);
   return info;
 }
 

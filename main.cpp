@@ -40,6 +40,6 @@ int main(int argc, const char **argv) {
   sstr << input_filestream.rdbuf();
   std::string file_contents_str = sstr.str();
 
-  arche::Info info = arche::read_info(file_contents_str);
+  arche::Info info = arche::read_info(file_contents_str, input_file);
   arche::info_to_json(output_file, info);
 }

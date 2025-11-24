@@ -10,6 +10,16 @@ public:
       return true; // Continue visiting
     }
 
+    // Get the file where the enum is defined
+    clang::SourceLocation loc = E->getLocation();
+    clang::PresumedLoc presumedLoc =
+        Context->getSourceManager().getPresumedLoc(loc);
+    std::string filename = presumedLoc.getFilename();
+
+    if (filename != info.filename) {
+      return true; // Continue visiting
+    }
+
     llvm::StringRef name = E->getName();
     arche::Enum &enum_ = info.enums[name];
     enum_.name = name;
@@ -29,10 +39,20 @@ public:
       return true; // Continue visiting
     }
 
+    // Get the file where the enum is defined
+    clang::SourceLocation loc = R->getLocation();
+    clang::PresumedLoc presumedLoc =
+        Context->getSourceManager().getPresumedLoc(loc);
+    std::string filename = presumedLoc.getFilename();
+    if (filename != info.filename) {
+      return true; // Continue visiting
+    }
+
     llvm::StringRef name = R->getName();
     arche::Struct &struct_ = info.structs[name];
     struct_.name = name;
 
+    // TODO: Handle nested structs and unions.
     for (const clang::FieldDecl *field : R->fields()) {
       arche::StructField field_info;
       field_info.name = field->getName();

@@ -1,6 +1,7 @@
 #ifndef ARCHE_INCLUDES_H
 #define ARCHE_INCLUDES_H
 
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
