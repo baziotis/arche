@@ -24,6 +24,7 @@ int main(int argc, const char **argv) {
   std::string output_file;
 
   if (cl_output_file.getNumOccurrences() > 0) {
+    assert(cl_output_file.getNumOccurrences() == 1);
     output_file = cl_output_file;
   } else {
     output_file = remove_extension(input_file) + ".json";

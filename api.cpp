@@ -25,6 +25,8 @@ namespace arche {
 void info_to_json(const std::string &filename, const arche::Info &info) {
   nlohmann::json j;
 
+  /// Enums ///
+
   const llvm::DenseMap<llvm::StringRef, arche::Enum> &enums = info.enums;
   for (const auto &pair : enums) {
     const arche::Enum &enum_ = pair.second;
@@ -35,6 +37,23 @@ void info_to_json(const std::string &filename, const arche::Info &info) {
     }
     j["enums"][enum_.name] = nlohmann::json(enum_elems);
   }
+
+  /// Structs ///
+  const llvm::DenseMap<llvm::StringRef, arche::Struct> &structs = info.structs;
+  for (const auto &pair : structs) {
+    const arche::Struct &st = pair.second;
+    std::vector<nlohmann::json> struct_fields;
+    struct_fields.reserve(st.fields.size());
+    for (const arche::StructField &e : st.fields) {
+      nlohmann::json field = {
+        {"name", e.name},
+        {"type", e.type}
+      };
+      struct_fields.push_back(field);
+    }
+    j["structs"][st.name] = nlohmann::json(struct_fields);
+  }
+
 
   std::ofstream o(filename);
   o << std::setw(2) << j << std::endl;

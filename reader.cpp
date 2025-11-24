@@ -1,3 +1,6 @@
+// I don't understand what half this LLVM code does. I just fought it long
+// enough until I managed to visit the things I needed to visit.
+
 class ReaderVisitor : public clang::RecursiveASTVisitor<ReaderVisitor> {
 public:
   explicit ReaderVisitor(clang::ASTContext *Context, arche::Info &info) : Context(Context), info(info) {}
@@ -16,6 +19,26 @@ public:
       elem.name = enum_const->getName();
 
       enum_.elems.push_back(elem);
+    }
+
+    return true; // Continue visiting
+  }
+
+  bool VisitRecordDecl(const clang::RecordDecl *R) {
+    if (!R->isCompleteDefinition() || !R->isStruct()) {
+      return true; // Continue visiting
+    }
+
+    llvm::StringRef name = R->getName();
+    arche::Struct &struct_ = info.structs[name];
+    struct_.name = name;
+
+    for (const clang::FieldDecl *field : R->fields()) {
+      arche::StructField field_info;
+      field_info.name = field->getName();
+      field_info.type = field->getType().getAsString();
+
+      struct_.fields.push_back(field_info);
     }
 
     return true; // Continue visiting
